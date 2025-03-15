@@ -1,6 +1,6 @@
 {
   "name": "mirza-ai-chatbox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A standalone JavaScript AI chat widget",
   "main": "dist/mirza-chat-box.js",
   "files": [

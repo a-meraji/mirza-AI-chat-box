@@ -11,14 +11,11 @@ if (typeof window !== 'undefined') {
   window.MirzaChatBox = MirzaChatBox;
 }
 
-// Export for module usage
-export { MirzaChatBox };
-
 /**
  * Initialize Mirza Chat with dynamic configuration
  * @param {Object} customConfig - Optional custom configuration
  */
-window.MirzaChat = {
+const MirzaChat = {
   init: function(customConfig = {}) {
     // Default configuration
     const defaultConfig = {
@@ -83,7 +80,7 @@ window.MirzaChat = {
    */
   getScriptConfig: function() {
     const config = {};
-    const scriptTag = document.querySelector('script[src*="mirza-chat"]');
+    const scriptTag = document.querySelector('script[src*="mirza-"]');
     
     if (scriptTag) {
       // Get all data attributes
@@ -325,12 +322,24 @@ window.MirzaChat = {
   }
 };
 
+// Make MirzaChat available globally
+if (typeof window !== 'undefined') {
+  window.MirzaChat = MirzaChat;
+  window.MirzaChatBox = MirzaChatBox;
+}
+
+// Export both MirzaChatBox and MirzaChat
+export { MirzaChatBox, MirzaChat };
+
+// Default export for backward compatibility
+export default {
+  MirzaChatBox,
+  MirzaChat
+};
+
 // Auto-initialize if global config is available or script has data attributes
 if (window.MIRZA_CHAT_CONFIG || document.querySelector('script[src*="mirza-chat"][data-website-id]')) {
   window.addEventListener('DOMContentLoaded', () => {
     window.MirzaChat.init();
   });
-}
-
-// Export both MirzaChat and MirzaChatBox for module usage
-export default { MirzaChat: window.MirzaChat, MirzaChatBox }; 
+} 

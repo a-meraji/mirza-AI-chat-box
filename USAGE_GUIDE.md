@@ -8,7 +8,7 @@ Add the following code to your HTML file:
 
 ```html
 <!-- Add this to your HTML file -->
-<script src="https://cdn.jsdelivr.net/npm/mirza-ai-chatbox@1.0.0/dist/mirza-chat-box.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mirza-ai-chatbox@1.0.1/dist/mirza-chat-box.js"></script>
 <script>
   // Initialize the chat widget
   window.addEventListener('DOMContentLoaded', function() {
@@ -47,7 +47,7 @@ You can also configure the chat widget using data attributes on the script tag:
 
 ```html
 <script 
-  src="https://cdn.jsdelivr.net/npm/mirza-ai-chatbox@1.0.0/dist/mirza-chat-box.js"
+  src="https://cdn.jsdelivr.net/npm/mirza-ai-chatbox@1.0.1/dist/mirza-chat-box.js"
   data-api-url="https://your-api-url.com"
   data-website-id="your-website-id"
   data-primary-color="#0066FF"
@@ -70,7 +70,7 @@ Another option is to set a global configuration variable before loading the scri
     companyName: 'Your Company Name'
   };
 </script>
-<script src="https://cdn.jsdelivr.net/npm/mirza-ai-chatbox@1.0.0/dist/mirza-chat-box.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mirza-ai-chatbox@1.0.1/dist/mirza-chat-box.js"></script>
 ```
 
 ## API Methods
@@ -99,6 +99,8 @@ If you encounter any issues with the chat widget, try the following:
 2. Check the browser console for any error messages.
 3. Enable debug mode by setting `debug: true` in the configuration.
 4. Make sure your website has access to the API endpoint (CORS settings).
+5. Clear your browser cache to ensure you're using the latest version of the script.
+6. Try using the local version of the script first to verify it works correctly.
 
 ## Support
 
@@ -106,4 +108,5 @@ If you need help with the chat widget, please contact us at support@example.com.
 
 ## Version History
 
+- 1.0.1: Fixed CDN integration issues and improved export structure
 - 1.0.0: Initial release 

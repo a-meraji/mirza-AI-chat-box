@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mirza Chat Box CDN Test v2</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      color: #333;
+      margin-top: 0;
+    }
+    
+    .debug-panel {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f8f9fa;
+      border-radius: 4px;
+      border: 1px solid #dee2e6;
+    }
+    
+    pre {
+      background-color: #f1f1f1;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+      margin: 0;
+    }
+    
+    button {
+      background-color: #0066FF;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    
+    button:hover {
+      background-color: #0052cc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Mirza Chat Box CDN Test v2</h1>
+    <p>This page tests the CDN integration of Mirza Chat Box version 1.0.1.</p>
+    
+    <div class="debug-panel">
+      <h3>Debug Panel</h3>
+      <button onclick="checkObjects()">Check Global Objects</button>
+      <button onclick="initializeChat()">Initialize Chat</button>
+      <button onclick="toggleChat()">Toggle Chat</button>
+      <pre id="debug-output">Debug information will appear here...</pre>
+    </div>
+  </div>
+  
+  <!-- Console logging -->
+  <script>
+    console.log('Page loaded, preparing to load chat widget from CDN...');
+    
+    function log(message) {
+      const output = document.getElementById('debug-output');
+      output.textContent += message + '\n';
+      console.log(message);
+    }
+    
+    function checkObjects() {
+      const output = document.getElementById('debug-output');
+      output.textContent = ''; // Clear previous output
+      
+      log('Checking global objects:');
+      log('- MirzaChat exists: ' + (typeof window.MirzaChat !== 'undefined'));
+      if (typeof window.MirzaChat !== 'undefined') {
+        log('- MirzaChat properties: ' + Object.keys(window.MirzaChat).join(', '));
+      }
+      
+      log('- MirzaChatBox exists: ' + (typeof window.MirzaChatBox !== 'undefined'));
+      if (typeof window.MirzaChatBox !== 'undefined') {
+        log('- MirzaChatBox is a constructor: ' + (typeof window.MirzaChatBox === 'function'));
+      }
+      
+      log('- MIRZA_CHAT_CONFIG exists: ' + (typeof window.MIRZA_CHAT_CONFIG !== 'undefined'));
+      if (typeof window.MIRZA_CHAT_CONFIG !== 'undefined') {
+        log('- MIRZA_CHAT_CONFIG: ' + JSON.stringify(window.MIRZA_CHAT_CONFIG, null, 2));
+      }
+    }
+    
+    function initializeChat() {
+      log('Initializing chat...');
+      
+      try {
+        if (typeof window.MirzaChat !== 'undefined') {
+          window.MirzaChat.init({
+            apiUrl: 'https://your-api-url.com',
+            websiteId: 'your-website-id',
+            primaryColor: '#0066FF',
+            companyName: 'Mirza Chat Demo',
+            debug: true
+          });
+          log('Chat initialized successfully using MirzaChat.init()');
+        } else if (typeof window.MirzaChatBox !== 'undefined') {
+          const chatBox = new window.MirzaChatBox({
+            apiUrl: 'https://your-api-url.com',
+            websiteId: 'your-website-id',
+            primaryColor: '#0066FF',
+            companyName: 'Mirza Chat Demo',
+            debug: true
+          });
+          chatBox.init();
+          log('Chat initialized successfully using MirzaChatBox constructor');
+        } else {
+          log('ERROR: Neither MirzaChat nor MirzaChatBox is available');
+        }
+      } catch (error) {
+        log('ERROR initializing chat: ' + error.message);
+      }
+    }
+    
+    function toggleChat() {
+      log('Toggling chat...');
+      
+      try {
+        if (typeof window.MirzaChat !== 'undefined' && window.MirzaChat.widget) {
+          if (window.MirzaChat.widget.isOpen) {
+            window.MirzaChat.closeChat();
+            log('Chat closed');
+          } else {
+            window.MirzaChat.openChat();
+            log('Chat opened');
+          }
+        } else {
+          log('ERROR: MirzaChat.widget is not available');
+        }
+      } catch (error) {
+        log('ERROR toggling chat: ' + error.message);
+      }
+    }
+    
+    // Set up global configuration
+    window.MIRZA_CHAT_CONFIG = {
+      apiUrl: 'https://your-api-url.com',
+      websiteId: 'your-website-id',
+      primaryColor: '#0066FF',
+      companyName: 'Mirza Chat Demo',
+      debug: true
+    };
+    
+    log('Global configuration set');
+  </script>
+  
+  <!-- Load the chat widget from CDN -->
+  <script 
+    src="https://cdn.jsdelivr.net/npm/mirza-ai-chatbox@1.0.1/dist/mirza-chat-box.js"
+    onload="log('Chat widget script loaded successfully from CDN')"
+    onerror="log('ERROR: Failed to load chat widget script from CDN')"
+  ></script>
+</body>
+</html> 

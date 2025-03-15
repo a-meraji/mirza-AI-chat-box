@@ -54,7 +54,7 @@ You can easily integrate Mirza Chat Box into your website using jsDelivr CDN:
 
 ```html
 <!-- Add this to your HTML file -->
-<script src="https://cdn.jsdelivr.net/npm/mirza-ai-chatbox@1.0.0/dist/mirza-chat-box.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mirza-ai-chatbox@1.0.1/dist/mirza-chat-box.js"></script>
 <script>
   // Initialize the chat widget
   window.addEventListener('DOMContentLoaded', function() {
@@ -74,7 +74,7 @@ You can also configure the chat widget using data attributes on the script tag:
 
 ```html
 <script 
-  src="https://cdn.jsdelivr.net/npm/mirza-ai-chatbox@1.0.0/dist/mirza-chat-box.js"
+  src="https://cdn.jsdelivr.net/npm/mirza-ai-chatbox@1.0.1/dist/mirza-chat-box.js"
   data-api-url="https://your-api-url.com"
   data-website-id="your-website-id"
   data-primary-color="#0066FF"
@@ -97,13 +97,13 @@ Another option is to set a global configuration variable before loading the scri
     companyName: 'Your Company Name'
   };
 </script>
-<script src="https://cdn.jsdelivr.net/npm/mirza-ai-chatbox@1.0.0/dist/mirza-chat-box.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mirza-ai-chatbox@1.0.1/dist/mirza-chat-box.js"></script>
 ```
 
 ## Usage
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/mirza-ai-chatbox@1.0.0/dist/mirza-chat-box.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mirza-ai-chatbox@1.0.1/dist/mirza-chat-box.js"></script>
 <script>
   const chatBox = new MirzaChatBox({
     apiUrl: 'https://api.example.com',

@@ -7,13 +7,14 @@ module.exports = {
     filename: 'mirza-chat-box.js',
     path: path.resolve(__dirname, 'dist'),
     library: {
-      name: 'MirzaChatBox',
+      name: 'MirzaChat',
       type: 'umd',
-      export: ['MirzaChatBox']
+      export: 'default',
+      umdNamedDefine: true
     },
     globalObject: 'this',
     clean: true,
-    publicPath: '/'
+    publicPath: ''
   },
   module: {
     rules: [
@@ -63,7 +64,7 @@ module.exports = {
     open: true
   },
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
-  devtool: process.env.NODE_ENV === 'production' ? 'source-map' : 'eval-source-map',
+  devtool: process.env.NODE_ENV === 'production' ? false : 'eval-source-map',
   optimization: {
     minimize: process.env.NODE_ENV === 'production',
     usedExports: true
