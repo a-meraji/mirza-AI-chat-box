@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Box Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .test-button {
+            padding: 10px 20px;
+            background-color: #0066FF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Chat Box Test</h1>
+        <button id="init-chat" class="test-button">Initialize Chat</button>
+        <button id="open-chat" class="test-button">Open Chat</button>
+        <button id="close-chat" class="test-button">Close Chat</button>
+        
+        <h2>Test Message Elements</h2>
+        <div id="test-messages">
+            <!-- Test message elements will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Include the chat widget script -->
+    <script src="dist/mirza-chat-box.js"></script>
+    
+    <script>
+        // Initialize the chat widget when the page loads
+        document.getElementById('init-chat').addEventListener('click', function() {
+            window.MirzaChat.init({
+                apiUrl: 'http://localhost:8000',
+                websiteId: '655aac0e-d812-42d3-ae19-11cdb47cba7b',
+                debug: true
+            });
+        });
+        
+        // Open chat button
+        document.getElementById('open-chat').addEventListener('click', function() {
+            if (window.MirzaChat && window.MirzaChat.openChat) {
+                window.MirzaChat.openChat();
+            } else {
+                alert('Please initialize the chat first');
+            }
+        });
+        
+        // Close chat button
+        document.getElementById('close-chat').addEventListener('click', function() {
+            if (window.MirzaChat && window.MirzaChat.closeChat) {
+                window.MirzaChat.closeChat();
+            } else {
+                alert('Please initialize the chat first');
+            }
+        });
+        
+        // Create test message elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const testMessagesContainer = document.getElementById('test-messages');
+            
+            // Create user message
+            const userMessageWrapper = document.createElement('div');
+            userMessageWrapper.className = 'mirza-chat-message-wrapper user';
+            
+            const userMessage = document.createElement('div');
+            userMessage.className = 'mirza-chat-message user';
+            userMessage.textContent = 'This is a test user message';
+            
+            userMessageWrapper.appendChild(userMessage);
+            testMessagesContainer.appendChild(userMessageWrapper);
+            
+            // Create admin message
+            const adminMessageWrapper = document.createElement('div');
+            adminMessageWrapper.className = 'mirza-chat-message-wrapper admin';
+            
+            const adminMessage = document.createElement('div');
+            adminMessage.className = 'mirza-chat-message admin';
+            adminMessage.textContent = 'This is a test admin message';
+            
+            adminMessageWrapper.appendChild(adminMessage);
+            testMessagesContainer.appendChild(adminMessageWrapper);
+            
+            // Create system message
+            const systemMessageWrapper = document.createElement('div');
+            systemMessageWrapper.className = 'mirza-chat-message-wrapper system';
+            
+            const systemMessage = document.createElement('div');
+            systemMessage.className = 'mirza-chat-message system';
+            systemMessage.textContent = 'This is a test system message';
+            
+            systemMessageWrapper.appendChild(systemMessage);
+            testMessagesContainer.appendChild(systemMessageWrapper);
+            
+            // Add the CSS styles directly to the page for testing
+            const styleElement = document.createElement('style');
+            styleElement.textContent = `
+                /* Message wrapper */
+                .mirza-chat-message-wrapper {
+                    margin-bottom: 12px;
+                    display: flex;
+                    width: 100%;
+                }
+
+                .mirza-chat-message-wrapper.user {
+                    justify-content: flex-end;
+                }
+
+                .mirza-chat-message-wrapper.admin {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .mirza-chat-message-wrapper.system {
+                    justify-content: center;
+                }
+
+                /* Message item */
+                .mirza-chat-message {
+                    max-width: 80%;
+                    padding: 10px 14px;
+                    border-radius: 12px;
+                    position: relative;
+                    word-wrap: break-word;
+                    font-size: 0.95rem;
+                    line-height: 1.4;
+                }
+
+                .mirza-chat-message.user {
+                    align-self: flex-end;
+                    background-color: #0066FF;
+                    color: white;
+                    border-bottom-right-radius: 4px;
+                }
+
+                .mirza-chat-message.admin {
+                    align-self: flex-start;
+                    background-color: #E8F1FF;
+                    color: #333;
+                    border-bottom-left-radius: 4px;
+                }
+
+                .mirza-chat-message.system {
+                    align-self: center;
+                    background-color: #f8f9fa;
+                    color: #6c757d;
+                    border: 1px dashed #dee2e6;
+                    font-style: italic;
+                    max-width: 90%;
+                }
+            `;
+            document.head.appendChild(styleElement);
+        });
+    </script>
+</body>
+</html> 
