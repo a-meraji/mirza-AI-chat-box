@@ -1,5 +1,5 @@
 {
-  "name": "mirza-AI-chat",
+  "name": "mirza-ai-chatbox",
   "version": "1.0.0",
   "description": "A standalone JavaScript AI chat widget",
   "main": "dist/mirza-chat-box.js",
@@ -26,9 +26,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/mirza-chat-box.git"
+    "url": "https://github.com/a-meraji/mirza-chat-box.git"
   },
-  "homepage": "https://github.com/yourusername/mirza-chat-box",
+  "homepage": "https://github.com/a-meraji/mirza-chat-box",
   "devDependencies": {
     "@babel/core": "^7.23.5",
     "@babel/preset-env": "^7.23.5",
